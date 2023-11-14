@@ -1,0 +1,12 @@
+{
+    "name": "stable-diffusion-experiment",
+    "version": "1.0.0",
+    "description": "## installing stable diffusion",
+    "main": "index.js",
+    "scripts": {
+        "stable-diffusion-ui": "cd stable-diffusion-webui && ./webui.sh",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+}
