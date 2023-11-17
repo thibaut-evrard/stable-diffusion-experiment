@@ -20,3 +20,9 @@ _there is a version of stable diffusion available that already includes depth, b
 -   config file should be renamed to match model checkpoint: `768-v-ema.ckpt`
 
 running the webui: `./webui.sh`
+
+multicellular, irridecent
+
+microbiology biology cell view of a multi cellular irridecent organism abstract organism full shot white-background
+
+microscopic view of a microcellular irridecent organism organically shaped intriguing softbody
