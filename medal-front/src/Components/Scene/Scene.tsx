@@ -1,14 +1,19 @@
 import {Environment, OrbitControls, useGLTF} from '@react-three/drei';
-import {JUMP_FENCE, MEDAL_PATH} from '../../constants/assets';
+import {MEDAL_PATH, METAL} from '../../constants/assets';
 import {Mesh, TextureLoader} from 'three';
 import {useLoader} from '@react-three/fiber';
-import {useEffect} from 'react';
+import {FC, useEffect} from 'react';
+import {CustomDisplacementMaterial} from '../DisplacementMaterial/DisplacementMaterial';
+import {useMedalTexture} from '../../hooks/useMedalTexture';
+import {medals} from '../../content/content';
 
-const Scene = () => {
-    const [depth, texture] = useLoader(TextureLoader, [
-        JUMP_FENCE.DEPTH,
-        JUMP_FENCE.COLOUR,
-    ]);
+interface IScene {
+    medalIndex: number;
+}
+
+const Scene: FC<IScene> = ({medalIndex}) => {
+    const [metal] = useLoader(TextureLoader, [METAL]);
+    const {depth, texture} = useMedalTexture(medals[medalIndex]);
 
     useEffect(() => {
         if (depth) depth.flipY = false;
@@ -23,16 +28,15 @@ const Scene = () => {
         <>
             <Environment preset='sunset' />
             <OrbitControls />
-            <group rotation={[1.6, 0, 0]}>
+            <group rotation={[1.6, 0, 0]} scale={3}>
                 <mesh args={[medal.geometry, undefined]}>
-                    <meshStandardMaterial
-                        roughness={0.1}
-                        metalnessMap={depth}
-                        metalness={0.3}
+                    <CustomDisplacementMaterial
+                        roughness={0.4}
+                        metalness={0.1}
                         displacementMap={depth}
                         displacementScale={0.1}
-                        bumpMap={depth}
-                        bumpScale={10}
+                        bumpMap={metal}
+                        bumpScale={0.0}
                         map={texture}
                     />
                 </mesh>
