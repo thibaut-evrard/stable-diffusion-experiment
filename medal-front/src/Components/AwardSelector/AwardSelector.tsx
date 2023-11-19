@@ -2,11 +2,7 @@ import {FC} from 'react';
 import {Container, ItemsWrapper} from './AwardSelector.styles';
 import {medals} from '../../content/content';
 import ItemCard from './ItemCard/ItemCard';
-
-interface IAwardsSelector {
-    medalIndex: number;
-    setMedalIndex: (index: number) => void;
-}
+import {IAwardsSelector} from './AwardSelector.types';
 
 const AwardSelector: FC<IAwardsSelector> = ({medalIndex, setMedalIndex}) => {
     return (

@@ -6,10 +6,7 @@ import {MeshPhysicalMaterial, MeshPhysicalMaterialParameters} from 'three';
 import {useFrame} from '@react-three/fiber';
 import {vertexShader} from './shader/vertex';
 import {fragmentShader} from './shader/fragment';
-
-interface IUniform {
-    value: any;
-}
+import {IUniform} from 'three/src/renderers/shaders/UniformsLib';
 
 class CustomDisplacementMaterialBase extends MeshPhysicalMaterial {
     _time: IUniform = {value: 0.0};

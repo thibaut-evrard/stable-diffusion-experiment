@@ -1,45 +1,51 @@
-import {Environment, OrbitControls, useGLTF} from '@react-three/drei';
-import {MEDAL_PATH, METAL} from '../../constants/assets';
-import {Mesh, TextureLoader} from 'three';
-import {useLoader} from '@react-three/fiber';
-import {FC, useEffect} from 'react';
-import {CustomDisplacementMaterial} from '../DisplacementMaterial/DisplacementMaterial';
-import {useMedalTexture} from '../../hooks/useMedalTexture';
+import {Environment, useGLTF} from '@react-three/drei';
+import {MEDAL_PATH} from '../../constants/assets';
+import {Group, Mesh} from 'three';
+import {FC, useEffect, useRef, useState} from 'react';
+import {useMedalTexture} from '../../hooks/medal/useMedalTexture';
 import {medals} from '../../content/content';
-
-interface IScene {
-    medalIndex: number;
-}
+import {usePanRotate} from '../../hooks/user-interaction/usePanRotate';
+import {motion} from 'framer-motion-3d';
+import {rotate, rest} from './Scene.animations';
+import {IScene} from './Scene.types';
+import {IMedalTextures} from '../../hooks/medal/useMedalTexture.types';
+import {CustomDisplacementMaterial} from '../DisplacementMaterial/DisplacementMaterial';
 
 const Scene: FC<IScene> = ({medalIndex}) => {
-    const [metal] = useLoader(TextureLoader, [METAL]);
-    const {depth, texture} = useMedalTexture(medals[medalIndex]);
+    const [animation, setAnimation] = useState({});
+    const [textures, setTextures] = useState<IMedalTextures | null>(null);
 
+    const {scene} = useGLTF(MEDAL_PATH);
+    const medalMesh = scene.children[0] as Mesh;
+    const medalRef = useRef<Group<any>>(null);
+
+    const loadedTextures = useMedalTexture(medals[medalIndex]);
+    usePanRotate(medalRef);
+
+    // animated transition between textures
     useEffect(() => {
-        if (depth) depth.flipY = false;
-        if (texture) texture.flipY = false;
-    }, [depth, texture]);
+        setAnimation(rotate);
+        setTimeout(() => setTextures(loadedTextures), 1000);
+    }, [loadedTextures]);
 
-    const gltf = useGLTF(MEDAL_PATH);
-    const medal = gltf.scene.children[0] as Mesh;
-
-    if (!depth || !texture) return null;
+    if (!textures) return null;
     return (
         <>
             <Environment preset='sunset' />
-            <OrbitControls />
-            <group rotation={[1.6, 0, 0]} scale={3}>
-                <mesh args={[medal.geometry, undefined]}>
+            <group rotation={[1.6, 0, 0]} scale={2.5} ref={medalRef}>
+                <motion.mesh
+                    args={[medalMesh.geometry, undefined]}
+                    animate={animation}
+                    onAnimationComplete={() => setAnimation(rest)}
+                >
                     <CustomDisplacementMaterial
                         roughness={0.4}
                         metalness={0.1}
-                        displacementMap={depth}
-                        displacementScale={0.1}
-                        bumpMap={metal}
-                        bumpScale={0.0}
-                        map={texture}
+                        displacementMap={textures.depth}
+                        displacementScale={0.2}
+                        map={textures.texture}
                     />
-                </mesh>
+                </motion.mesh>
             </group>
         </>
     );

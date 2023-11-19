@@ -1,9 +1,9 @@
 import {Canvas} from '@react-three/fiber';
-import Scene from '../Scene/Scene';
 import {CanvasContainer, Container, Headline, Title} from './Manager.styles';
 import AwardSelector from '../AwardSelector/AwardSelector';
 import {useState} from 'react';
 import {medals} from '../../content/content';
+import Scene from '../Scene/Scene';
 
 const Manager = () => {
     const [medalIndex, setMedalIndex] = useState<number>(0);
