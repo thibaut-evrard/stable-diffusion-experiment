@@ -1,6 +1,6 @@
 {
     "homepage": "https://thibaut-evrard.github.io/stable-diffusion-experiment",
-    "name": "medal-front",
+    "name": "stable-diffusion-experiment",
     "version": "0.1.0",
     "private": true,
     "dependencies": {

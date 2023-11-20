@@ -10,26 +10,27 @@ type TMedals = IMedalContent[];
 export const medals: TMedals = [
     {
         title: 'Jump the Gate',
-        thumbnail: '/assets/maps/thumbnail/jump.png',
-        texture: '/assets/maps/colour/jump.jpg',
-        depthmap: '/assets/maps/depth/jump.jpg',
+        thumbnail: process.env.PUBLIC_URL + '/assets/maps/thumbnail/jump.png',
+        texture: process.env.PUBLIC_URL + '/assets/maps/colour/jump.jpg',
+        depthmap: process.env.PUBLIC_URL + '/assets/maps/depth/jump.jpg',
     },
     {
         title: 'Mind the Gap',
-        thumbnail: '/assets/maps/thumbnail/gap.png',
-        texture: '/assets/maps/colour/gap.jpg',
-        depthmap: '/assets/maps/depth/gap.jpg',
+        thumbnail: process.env.PUBLIC_URL + '/assets/maps/thumbnail/gap.png',
+        texture: process.env.PUBLIC_URL + '/assets/maps/colour/gap.jpg',
+        depthmap: process.env.PUBLIC_URL + '/assets/maps/depth/gap.jpg',
     },
     {
         title: 'Netflix Time',
-        thumbnail: '/assets/maps/thumbnail/netflix.png',
-        texture: '/assets/maps/colour/netflix.jpg',
-        depthmap: '/assets/maps/depth/netflix.jpg',
+        thumbnail:
+            process.env.PUBLIC_URL + '/assets/maps/thumbnail/netflix.png',
+        texture: process.env.PUBLIC_URL + '/assets/maps/colour/netflix.jpg',
+        depthmap: process.env.PUBLIC_URL + '/assets/maps/depth/netflix.jpg',
     },
     {
         title: 'Catch the Train',
-        thumbnail: '/assets/maps/thumbnail/run.png',
-        texture: '/assets/maps/colour/run.jpg',
-        depthmap: '/assets/maps/depth/run.jpg',
+        thumbnail: process.env.PUBLIC_URL + '/assets/maps/thumbnail/run.png',
+        texture: process.env.PUBLIC_URL + '/assets/maps/colour/run.jpg',
+        depthmap: process.env.PUBLIC_URL + '/assets/maps/depth/run.jpg',
     },
 ];
