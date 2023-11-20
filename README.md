@@ -1,28 +1,42 @@
-# stable-diffusion-experiment
+# Awards of the tube
 
-## installing stable diffusion
+this is a prototype using react-create app
 
-install stable diffusion on local machine from https://github.com/AUTOMATIC1111/stable-diffusion-webui
-( tested on macbook pro 2018 -> instructions: https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/5461 )
+## Scope
 
-model:
-https://huggingface.co/stabilityai/stable-diffusion-2
+This webapp has been developed and tested on chrome desktop, it should be viewed at 1440x790px resolution for an optimal experience
 
-checkpoint file:
-https://huggingface.co/stabilityai/stable-diffusion-2/resolve/main/768-v-ema.ckpt
+## Getting started / running the code
 
-config file:
-https://github.com/Stability-AI/stablediffusion/raw/main/configs/stable-diffusion/v2-inference-v.yaml
+-   install npm: `npm i`
+-   launch the dev server `npm start`
 
-_there is a version of stable diffusion available that already includes depth, but we will stay away from it to maximise learning_
+## Libraries and Frameworks
 
--   model and config file should be placed in `stable-diffusion-webui/models/Stable-diffusion`
--   config file should be renamed to match model checkpoint: `768-v-ema.ckpt`
+-   React js for building the UI
+-   Typescript
+-   Framer Motion for animation
+-   Styled components for CSS
+-   Three js for Webgl
+    -   React Fiber for concistency between react and Three
+    -   React-three-drei for useful Webgl helpers
 
-running the webui: `./webui.sh`
+## Understanding the code
 
-multicellular, irridecent
+### Architecture
 
-microbiology biology cell view of a multi cellular irridecent organism abstract organism full shot white-background
+code in the `src` folder is organised by function:
 
-microscopic view of a microcellular irridecent organism organically shaped intriguing softbody
+-   components -> renderable elements
+-   constants
+-   content -> since this is a prototype, we store the content as a ts file
+-   hooks -> react hooks containing complex logic used in the app
+
+### Components structure
+
+the code of each components is subdivided into different files for clarity:
+
+-   `Component.tsx` -> core component code
+-   `Component.styles.ts` -> styled-compoents code
+-   `Component.animations.ts` -> framer animation objects
+-   `Component.types.ts` -> typescipt objects
