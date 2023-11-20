@@ -4,6 +4,7 @@ import AwardSelector from '../AwardSelector/AwardSelector';
 import {useState} from 'react';
 import {medals} from '../../content/content';
 import Scene from '../Scene/Scene';
+import {SoftShadows} from '@react-three/drei';
 
 const Manager = () => {
     const [medalIndex, setMedalIndex] = useState<number>(0);
@@ -12,7 +13,8 @@ const Manager = () => {
         <Container>
             <Title>Awards of the Tube</Title>
             <CanvasContainer>
-                <Canvas>
+                <Canvas shadows={true}>
+                    <SoftShadows />
                     <Scene medalIndex={medalIndex} />
                 </Canvas>
                 <Headline>{medals[medalIndex].title}</Headline>

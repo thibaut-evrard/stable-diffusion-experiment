@@ -2,6 +2,10 @@
 
 this is a prototype using react-create app
 
+## Scope
+
+This webapp has been developed and tested on chrome desktop, it should be viewed at 1440x790px resolution for an optimal experience
+
 ## Getting started / running the code
 
 -   install npm: `npm i`
@@ -19,22 +23,20 @@ this is a prototype using react-create app
 
 ## Understanding the code
 
-### Overall Architecture
+### Architecture
 
-The src folder has the following architecture:
+code in the `src` folder is organised by function:
 
--   components
--   content
--   hooks
+-   components -> renderable elements
 -   constants
+-   content -> since this is a prototype, we store the content as a ts file
+-   hooks -> react hooks containing complex logic used in the app
 
-components code is broken down in the following way:
-`Component.tsx`
-`Component.types.ts` - typescript types
-`Component.animations.tsx` - animations
-`Component.styles.ts` - styled compoents
+### Components structure
 
-### Content management
+the code of each components is subdivided into different files for clarity:
 
-as this is a quick prototype, content is stored in `src/content/content.ts` it references the assets that can be found in `public/assets`
-this is not scallable but allows us to access the content in any of our components
+-   `Component.tsx` -> core component code
+-   `Component.styles.ts` -> styled-compoents code
+-   `Component.animations.ts` -> framer animation objects
+-   `Component.types.ts` -> typescipt objects
